@@ -1,14 +1,19 @@
 fun main(){
     var previousAmount=1005
 
-    var amont :Double =10001.00
+    var amount :Double =100000.00
     var check : Boolean=true
-    if(previousAmount>1000 && previousAmount<10001)
-    amont-=100
-     if(previousAmount>10000)
-        amont-=amont*0.05/100;
 
-    if(check)
-        amont-=amont*0.01/100
-    print("Amount: "+ amont)
+   result("Mastercard",previousAmount, amount )
+}
+fun result(typeCard: String="Vk Pay", previousAmount: Int, amount: Double){
+    when(typeCard){
+        "Mastercard", "Maestro" -> if(! (amount >= 300 && amount <= 75000) ) {
+           print ("Amount: "+(amount -(amount*0.6 /100 +20)) + "налог "+(amount*0.6 /100 +20))
+
+        }
+        "Visa" , "Мир" -> if( amount * 0.75/100 <=35 ) println("Amount: " + (amount - 35) +" налог 35 руб")
+                    else print("Amount: "+(amount -amount * 0.75/100 )+" налог " +amount * 0.75/100)
+        "Vk Pay" -> print("Amount: "+amount+" налог 0.0" )
+    }
 }
